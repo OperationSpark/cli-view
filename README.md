@@ -1,7 +1,7 @@
 # cli-view
 A Node.js module, a utility supporting cli menu and table creation to assist in creating simple cli games and apps...
 
-node-view wraps the popular node packages prompt and cli-table to provide a simple interface for quickly creating cli menus and tables.
+cli-view wraps the popular node packages prompt and cli-table to provide a simple interface for quickly creating cli menus and tables.
 
 ##Installtion
 
