@@ -1,5 +1,5 @@
 {
-  "name": "node-view",
+  "name": "cli-view",
   "version": "0.1.0",
   "description": "A Node.js module, a utility supporting cli menu and table creation to assist in creating simple cli games and apps.",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/OperationSpark/node-view.git"
+    "url": "https://github.com/OperationSpark/cli-view.git"
   },
   "keywords": [
     "operation",
@@ -22,9 +22,9 @@
   "author": "jfraboni",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/OperationSpark/node-view/issues"
+    "url": "https://github.com/OperationSpark/cli-view/issues"
   },
-  "homepage": "https://github.com/OperationSpark/node-view",
+  "homepage": "https://github.com/OperationSpark/cli-view",
   "dependencies": {
     "prompt": "^0.2.14",
     "cli-table": "^0.3.0",

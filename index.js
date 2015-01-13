@@ -29,6 +29,7 @@ function makeMenu(message, validator) {
     
     var _menu = {
         show: function() {
+            prmpt.message = '';
             // just in case we haven't used the prompt before //
             prmpt.start();
             prmpt.get(menuProperties, function (err, result) {
