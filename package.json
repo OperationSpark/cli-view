@@ -1,0 +1,33 @@
+{
+  "name": "node-view",
+  "version": "0.0.1",
+  "description": "A Node.js module, a utility supporting cli menu and table creation to assist in creating simple cli games and apps.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OperationSpark/node-view.git"
+  },
+  "keywords": [
+    "operation",
+    "spark",
+    "game",
+    "view",
+    "menu",
+    "table",
+    "cli"
+  ],
+  "author": "jfraboni",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/OperationSpark/node-view/issues"
+  },
+  "homepage": "https://github.com/OperationSpark/node-view",
+  "dependencies": {
+    "prompt": "^0.2.14",
+    "cli-table": "^0.3.0",
+    "deep-extend": "^0.2.11"
+  }
+}
