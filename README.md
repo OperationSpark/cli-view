@@ -18,9 +18,9 @@ Make quick menus on the fly: Here we're wrapping the prompt package:
 ####makeMenu
 
 ````javascript
-var view = require("cli-view");
+var view = require('cli-view');
 
-mainMenu = view.makeMenu("(s) Start game, (q) quit", /^[sq]$/);
+mainMenu = view.makeMenu('(s) Start game, (q) quit', /^[sq]$/);
 mainMenu.on('userInput', onMainMenuInput);
 mainMenu.show();
 
@@ -44,26 +44,26 @@ Note the chained configuration.
 
 ````javascript
 var 
-    model = require("./model")
-    view = require("cli-view"),
+    view = require('cli-view'),
     onlyAlphabet = /^[A-Za-z\s\'\"\.]+$/,
+    model = require('./model'),
     people = [];
 
 view.makeMultiInputMenu([
     {
-        name: "nameFirst", 
+        name: 'nameFirst', 
         validator: onlyAlphabet,
         message: 'Enter your first name',
         required: true
     },
     {
-        name: "nameLast", 
+        name: 'nameLast', 
         validator: onlyAlphabet,
-        message: 'Enter your last name,
+        message: 'Enter your last name',
         required: true
     },
     {
-        name: "username", 
+        name: 'username', 
         validator: onlyAlphabet,
         message: 'Enter your username',
         required: true
@@ -84,12 +84,10 @@ Here, we're wrapping the cli-table package.  The `show()` takes an Array of Arra
 
 ````javascript
 var
-    view = require("cli-view");
-
-var formattedUsers = [
+    view = require('cli-view'),
+    formattedUsers = [
     ['1', 'userOne'],
-    ['2', 'userTwo']
-]
+    ['2', 'userTwo']];
 
 var table = view.makeTable(['no.:', 'username']);
 
