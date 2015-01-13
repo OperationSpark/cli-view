@@ -91,6 +91,9 @@ var
 
 var table = view.makeTable(['no.:', 'username']);
 
-// the show method takes an Array of Array forming the columns of data as string values, like the formattedUsers Array.
+/*
+ * The show method takes an Array of Array forming the columns 
+ * of data as string values, like the formattedUsers Array.
+ */
 table.show(formattedUsers);
 ````
