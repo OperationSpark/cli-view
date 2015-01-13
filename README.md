@@ -40,7 +40,7 @@ function onMainMenuInput(input) {
 
 ####makeMultiInputMenu
 
-Note the chained configuration.
+The `makeMultiInputMenu()` method takes an Array of configuration objects for a multi-step input.  Note the chained configuration:
 
 ````javascript
 var 
