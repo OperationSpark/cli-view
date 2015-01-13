@@ -21,21 +21,42 @@ Make quick menus on the fly: Here we're wrapping the prompt package:
 var view = require('cli-view');
 
 mainMenu = view.makeMenu('(s) Start game, (q) quit', /^[sq]$/);
-mainMenu.on('userInput', onMainMenuInput);
+mainMenu.on('input', onMainMenuInput);
 mainMenu.show();
 
 function onMainMenuInput(input) {
-    // TODO 1 : Create a switch case to process the main menu input //
     switch (input) {
         case 'q':
             console.log('Thanks for playing Operation Spark\'s awesome game! Bye bye!');
             process.exit(0);
-            break;
+            break; // IDE might complain without break //
         case 's':
             start();
             break;
     }
 }
+````
+
+The above menu could also be configured like so:
+
+````javascript
+var view = require('cli-view');
+
+var 
+    mainMenu = view
+        .makeMenu('(s) Start game, (q) quit', /^[sq]$/)
+        .onInput('input', function (input) {
+            switch (input) {
+                case 'q':
+                    console.log('Thanks for playing Operation Spark\'s awesome game! Bye bye!');
+                    process.exit(0);
+                    break;
+                case 's':
+                    start();
+                    break;
+            }
+        });
+        .show();
 ````
 
 ####makeMultiInputMenu
@@ -69,7 +90,7 @@ view.makeMultiInputMenu([
         required: true
     }
 ])
-.onUserInput(function (input) {
+.onInput(function (input) {
     person = model.makePerson(input.nameFirst, input.nameLast, input.username);
     people.push(person);
 })

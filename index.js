@@ -6,24 +6,25 @@ const
     deepExtend = require('deep-extend'),
     EventEmitter = require('events').EventEmitter;
 
-
-// TODO 
 /**
  * makeMenu A factory that returns a menu object capable of prompting a user 
- *      for input.  On input, dispatches the 'userInput' event along with the input.
+ *      for input. On input, the menu dispatches the 'input' event along with the input.
  * @param {String} message The menu selection text to be shown to the user, 
  *      usually someting like (1) Show, (2) Add, (q) Quit:.
  * @param {RegEx} validator A regular expression to validate user input.
+ * @param {String} warning The warning message displayed to the user if their 
+ *      input is invalid.
 
  * @extends {events.EventEmitter}
  */
-function makeMenu(message, validator) {
+function makeMenu(message, validator, warning) {
     var menuProperties = [
         {
           name: 'input', 
           required: true,
           message: message,
-          validator: validator
+          validator: validator,
+          warning: warning
         }
     ];
     
@@ -34,8 +35,18 @@ function makeMenu(message, validator) {
             prmpt.start();
             prmpt.get(menuProperties, function (err, result) {
                 if (err) { return onErr(err); }
-                _menu.emit('userInput', result.input);
+                _menu.emit('input', result.input);
             });
+            return _menu;
+        },
+        
+        onInputOnce: function (callback) {
+            _menu.once('input', callback);
+            return _menu;
+        },
+        
+        onInput: function (callback) {
+            _menu.on('input', callback);
             return _menu;
         }
     };
@@ -44,6 +55,16 @@ function makeMenu(message, validator) {
 }
 module.exports.makeMenu = makeMenu;
 
+
+/**
+ * makeMultiInputMenu A factory that returns a menu object capable of prompting 
+ *      a user for multi step input. Once all input steps are complete, the 
+ *      menu dispatches the 'input' event along with the input.
+ * @param {Array} properties Based on the original prompt API, takes an Array of 
+ *      configuration objects, key value pairs representing the input step.
+
+ * @extends {events.EventEmitter}
+ */
 function makeMultiInputMenu(properties) {
     var _menu = {
         properties: properties,
@@ -53,12 +74,18 @@ function makeMultiInputMenu(properties) {
             prmpt.start();
             prmpt.get(properties, function (err, input) {
                     if (err) return onErr(err);
-                    _menu.emit('userInput', input);
+                    _menu.emit('input', input);
             });
+            return _menu;
         },
         
-        onUserInput: function (callback) {
-            _menu.once('userInput', callback);
+        onInputOnce: function (callback) {
+            _menu.once('input', callback);
+            return _menu;
+        },
+        
+        onInput: function (callback) {
+            _menu.on('input', callback);
             return _menu;
         }
     };
@@ -73,8 +100,9 @@ function makeTable(headers) {
             var table = createFormattedTable(headers);
             table.push.apply(table, values);
             console.log(table.toString());
+            return _table;
         }
-    }
+    };
     return _table;
 }
 module.exports.makeTable = makeTable;
