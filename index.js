@@ -5,6 +5,12 @@ var
     prmpt = require("prompt"),
     deepExtend = require('deep-extend'),
     EventEmitter = require('events').EventEmitter;
+    
+/*
+ * For our purposes, kill the default prompt message and delimiter.
+ */
+prmpt.message = '';
+prmpt.delimiter = '';
 
 /**
  * makeMenu A factory that returns a menu object capable of prompting a user 
@@ -30,7 +36,6 @@ function makeMenu(message, validator, warning) {
     
     var _menu = {
         show: function() {
-            prmpt.message = '';
             // just in case we haven't used the prompt before //
             prmpt.start();
             prmpt.get(menuProperties, function (err, result) {
