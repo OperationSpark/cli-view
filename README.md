@@ -42,8 +42,7 @@ The above menu could also be configured like so:
 ````javascript
 var view = require('cli-view');
 
-var 
-    mainMenu = view
+var mainMenu = view
         .makeMenu('(s) Start game, (q) quit', /^[sq]$/)
         .onInput('input', function (input) {
             switch (input) {
@@ -55,7 +54,7 @@ var
                     start();
                     break;
             }
-        });
+        })
         .show();
 ````
 
