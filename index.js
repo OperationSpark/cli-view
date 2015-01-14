@@ -37,6 +37,13 @@ function makeMenu(message, validator, warning) {
     var _menu = {
         properties: _properties,
         
+        setProperties: function (message, validator, warning) {
+            _properties.message = message;
+            _properties.validator = validator;
+            _properties.warning = warning;
+            return _menu;
+        },
+        
         show: function() {
             // just in case we haven't used the prompt before //
             prmpt.start();
@@ -75,6 +82,13 @@ module.exports.makeMenu = makeMenu;
 function makeMultiInputMenu(properties) {
     var _menu = {
         properties: properties,
+        
+        setProperties: function (message, validator, warning) {
+            properties.message = message;
+            properties.validator = validator;
+            properties.warning = warning;
+            return _menu;
+        },
         
         show: function() {
             // just in case we haven't used the prompt before //
