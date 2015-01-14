@@ -1,6 +1,6 @@
 'use strict';
 
-const
+var
     Table = require('cli-table'),
     prmpt = require("prompt"),
     deepExtend = require('deep-extend'),
