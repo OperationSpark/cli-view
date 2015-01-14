@@ -1,6 +1,6 @@
 {
   "name": "cli-view",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "A Node.js module, a utility supporting cli menu and table creation to assist in creating simple cli games and apps.",
   "main": "index.js",
   "scripts": {
