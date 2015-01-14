@@ -24,7 +24,7 @@ prmpt.delimiter = '';
  * @extends {events.EventEmitter}
  */
 function makeMenu(message, validator, warning) {
-    var menuProperties = [
+    var _properties = [
         {
           name: 'input', 
           required: true,
@@ -35,10 +35,12 @@ function makeMenu(message, validator, warning) {
     ];
     
     var _menu = {
+        properties: _properties,
+        
         show: function() {
             // just in case we haven't used the prompt before //
             prmpt.start();
-            prmpt.get(menuProperties, function (err, result) {
+            prmpt.get(_properties, function (err, result) {
                 if (err) { return onErr(err); }
                 _menu.emit('input', result.input);
             });
