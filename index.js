@@ -24,15 +24,14 @@ prmpt.delimiter = '';
  * @extends {events.EventEmitter}
  */
 function makeMenu(message, validator, warning) {
-    var _properties = [
+    var _properties = 
         {
           name: 'input', 
           required: true,
           message: message,
           validator: validator,
           warning: warning
-        }
-    ];
+        };
     
     var _menu = {
         properties: _properties,
@@ -47,7 +46,7 @@ function makeMenu(message, validator, warning) {
         show: function() {
             // just in case we haven't used the prompt before //
             prmpt.start();
-            prmpt.get(_properties, function (err, result) {
+            prmpt.get([_properties], function (err, result) {
                 if (err) { return onErr(err); }
                 _menu.emit('input', result.input);
             });
@@ -75,25 +74,27 @@ module.exports.makeMenu = makeMenu;
  *      a user for multi step input. Once all input steps are complete, the 
  *      menu dispatches the 'input' event along with the input.
  * @param {Array} properties Based on the original prompt API, takes an Array of 
- *      configuration objects, key value pairs representing the input step.
-
+ *      configuration objects, key value pairs representing the configuration of 
+ *      an input or prompt step.
+ *
  * @extends {events.EventEmitter}
  */
 function makeMultiInputMenu(properties) {
+    var _properties = properties;
     var _menu = {
-        properties: properties,
+        properties: _properties,
         
         setProperties: function (message, validator, warning) {
-            properties.message = message;
-            properties.validator = validator;
-            properties.warning = warning;
+            _properties.message = message;
+            _properties.validator = validator;
+            _properties.warning = warning;
             return _menu;
         },
         
         show: function() {
             // just in case we haven't used the prompt before //
             prmpt.start();
-            prmpt.get(properties, function (err, input) {
+            prmpt.get(_properties, function (err, input) {
                     if (err) return onErr(err);
                     _menu.emit('input', input);
             });
